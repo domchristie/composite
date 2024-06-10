@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="A hybrid client-side/server-side approach to rendering HTML. Dynamic HTML from template elements">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+  label {
+    display: block;
+    margin-bottom: 0.5em;
+  }
+  </style>
+</head>
+<body>
+  <h1>🦷 Composite Demo</h1>
+  <form>
+    <label>
+      Greeting
+      <input type="text" name="greeting" value="Hello" />
+    </label>
+
+    <label>
+      Name
+      <input type="text" name="name" value="World" />
+    </label>
+  </form>
+
+  <h2>Output</h2>
+  <output></output>
+
+  <p><a href="https://github.com/domchristie/composite">Source on GitHub</a></p>
+
+  <template id="hello">
+    <p>${greeting}, ${name}!</p>
+  </template>
+
+  <script type="module">
+    import { fill } from './composite.js'
+
+    const form = document.querySelector('form')
+    const output = document.querySelector('output')
+
+    const Hello = document.getElementById('hello')
+    render()
+
+    form.addEventListener('input', render)
+
+    function render () {
+      output.innerHTML = fill(Hello, Object.fromEntries(new FormData(form)))
+    }
+  </script>
+</body>
+</html>
