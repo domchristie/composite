@@ -2,7 +2,7 @@
 
 A hybrid client-side/server-side approach to generating dynamic HTML.
 
-Compose your HTML in `<template>` elements. Use placeholders (`${…}`) to mark dynamic content. Call `fill` to generate a new HTML string which interpolates the template's content with given properties.
+Compose your HTML in `<template>` elements. Use placeholders (`${…}`) to mark dynamic content. Call `fill` to generate a new HTML string which interpolates the template's content with the given properties.
 
 ## Usage
 
