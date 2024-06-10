@@ -6,6 +6,10 @@ Compose your HTML in `<template>` elements. Use placeholders (`${…}`) to mark 
 
 ## Usage
 
+```
+npm install @domchristie/composite
+```
+
 ```html
 /* rendered somewhere in the DOM */
 <template id="hello">
