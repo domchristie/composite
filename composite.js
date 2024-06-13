@@ -42,11 +42,24 @@ const entities = {
   '=': '&#x3D;'
 }
 
-function escape (string) {
+/**
+ * Escapes special characters in a string for use in HTML.
+ * The characters escaped are: & < > " ' ` = /
+ *
+ * @param {string} string - The input string to escape.
+ * @returns {string} - The escaped string.
+ */
+export function escape (string) {
   return String(string).replace(/[&<>"'`=\/]/g, (s) => entities[s])
 }
 
-function raw (html) {
+/**
+ * Marks a string as raw HTML to prevent escaping of special characters.
+ *
+ * @param {string} html - The HTML string to wrap.
+ * @returns {RawString} - The wrapped HTML string as a RawString object.
+ */
+export function raw (html) {
   return new RawString(html)
 }
 
