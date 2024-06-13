@@ -1,13 +1,16 @@
 /**
  * Renders a template with given properties.
  *
- * @param {HTMLElement} template - The HTML element containing the template string.
+ * @param {HTMLTemplateElement|string} template - The HTML template to be rendered.
  * @param {Object} props - An object containing properties to be interpolated into the template.
  * @returns {string} The rendered HTML string with properties interpolated.
  */
 export function fill (template, props) {
+  template = template instanceof HTMLElement
+      ? template.innerHTML
+      : String(template)
   return (new Function('html', 'raw', ...Object.keys(props),
-    `return html\`${template.innerHTML}\``
+    `return html\`${template}\``
   ))(html, raw, ...Object.values(props))
 }
 
