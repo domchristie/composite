@@ -1,6 +1,6 @@
 {
   "name": "@domchristie/composite",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "A hybrid client-side/server-side approach to generating dynamic HTML.",
   "main": "composite.js",
   "scripts": {
