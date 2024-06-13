@@ -31,10 +31,19 @@ function html (strings, ...values) {
   }, '')
 }
 
+const entities = {
+  '&': '&amp;',
+  '<': '&lt;',
+  '>': '&gt;',
+  '"': '&quot;',
+  "'": '&#39;',
+  '/': '&#x2F;',
+  '`': '&#x60;',
+  '=': '&#x3D;'
+}
+
 function escape (string) {
-  const div = document.createElement('div')
-  div.appendChild(document.createTextNode(string))
-  return div.innerHTML
+  return String(string).replace(/[&<>"'`=\/]/g, (s) => entities[s])
 }
 
 function raw (html) {
