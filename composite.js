@@ -24,7 +24,7 @@ export function fill (template, props) {
  */
 function html (strings, ...values) {
   return strings.reduce((result, string, i) => {
-    const value = values[i]
+    const value = values[i] != null
       ? values[i].raw ? values[i] : escape(values[i])
       : ''
     return result + string + value
