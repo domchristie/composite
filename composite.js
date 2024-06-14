@@ -7,7 +7,7 @@
  */
 export function fill (template, props) {
   template = template instanceof HTMLElement
-      ? template.innerHTML
+      ? unescape(template.innerHTML)
       : String(template)
   return (new Function('html', 'raw', ...Object.keys(props),
     `return html\`${template}\``
@@ -51,6 +51,13 @@ const entities = {
  */
 export function escape (string) {
   return String(string).replace(/[&<>"'`=\/]/g, (s) => entities[s])
+}
+
+let textarea
+function unescape (string) {
+  textarea = textarea || document.createElement('textarea')
+  textarea.innerHTML = string
+  return textarea.value
 }
 
 /**
