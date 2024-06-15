@@ -22,7 +22,7 @@ export function fill (template, props) {
  * @param {...any} values - The values to be interpolated into the template.
  * @returns {string} The final string with values safely interpolated.
  */
-function html (strings, ...values) {
+export function html (strings, ...values) {
   return strings.reduce((result, string, i) => {
     const value = values[i] != null
       ? values[i].raw ? values[i] : escape(values[i])
