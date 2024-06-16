@@ -9,9 +9,9 @@ export function fill (template, props) {
   template = template instanceof HTMLElement
       ? unescape(template.innerHTML)
       : String(template)
-  return (new Function('html', 'raw', ...Object.keys(props),
+  return (new Function(...Object.keys(exports), ...Object.keys(props),
     `return html\`${template}\``
-  ))(html, raw, ...Object.values(props))
+  ))(...Object.values(exports), ...Object.values(props))
 }
 
 /**
@@ -31,6 +31,16 @@ export function html (strings, ...values) {
   }, '')
 }
 
+/**
+ * Escapes special characters in a string for use in HTML.
+ * The characters escaped are: & < > " ' ` = /
+ *
+ * @param {string} string - The input string to escape.
+ * @returns {string} - The escaped string.
+ */
+export function escape (string) {
+  return String(string).replace(/[&<>"'`=\/]/g, (s) => entities[s])
+}
 const entities = {
   '&': '&amp;',
   '<': '&lt;',
@@ -43,22 +53,17 @@ const entities = {
 }
 
 /**
- * Escapes special characters in a string for use in HTML.
- * The characters escaped are: & < > " ' ` = /
+ * Unescapes a given HTML-encoded string.
  *
- * @param {string} string - The input string to escape.
- * @returns {string} - The escaped string.
+ * @param {string} string - The HTML-encoded string to unescape.
+ * @returns {string} - The unescaped string.
  */
-export function escape (string) {
-  return String(string).replace(/[&<>"'`=\/]/g, (s) => entities[s])
-}
-
-let textarea
-function unescape (string) {
+export function unescape (string) {
   textarea = textarea || document.createElement('textarea')
   textarea.innerHTML = string
   return textarea.value
 }
+let textarea
 
 /**
  * Marks a string as raw HTML to prevent escaping of special characters.
@@ -71,3 +76,5 @@ export function raw (html) {
 }
 
 class RawString extends String { raw = true }
+
+const exports = { fill, html, escape, unescape, raw }
