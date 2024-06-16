@@ -4,12 +4,16 @@
   "description": "A hybrid client-side/server-side approach to generating dynamic HTML.",
   "main": "composite.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "docs": "npx documentation readme composite.js -s \"API Docs\" --github"
   },
   "keywords": [
     "html",
     "template"
   ],
   "author": "Dom Christie",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "documentation": "^14.0.3"
+  }
 }
